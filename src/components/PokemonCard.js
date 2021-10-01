@@ -1,18 +1,37 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
 
-function PokemonCard({pokemonData, title, image, moves, weight, abilities}) {
+function PokemonCard({id}) {
 
-    const allAbilities = pokemonData.map((data) => {
-        return <span className="abilities">{data.title}</span>
-    });
+    const [pokemonData, setPokemonData] = useState({});
+
+        useEffect(() => {
+            async function fetchData() {
+                try {
+                    const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+                    console.log(result.data);
+                    setPokemonData(result.data);
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+                fetchData();
+                console.log("test pokemonCard");
+        }, []);
 
     return (
         <>
-            <h2>{title}</h2>
-            <img src={image} alt={title}/>
-            <p><b>Moves: </b>{moves}</p>
-            <p><b>Weight: </b>{weight}</p>
-            <p>Abilities:</p>{allAbilities}
+            {Object.keys(pokemonData).length > 0 &&
+                <>
+            <h2>{pokemonData.name}</h2>
+            <img src={pokemonData.sprites.front_default} alt={pokemonData.name}/>
+            <p><b>Moves: </b>{pokemonData.moves.length}</p>
+            <p><b>Weight: </b>{pokemonData.weight}</p>
+            <p>Abilities:</p>{pokemonData.abilities.map((pokemonAbility) => {
+            return <span className="abilities">{pokemonAbility.ability.name}</span>
+        })}
+                </>
+            }
         </>
     )
 }
