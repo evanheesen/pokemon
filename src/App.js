@@ -18,34 +18,27 @@ function App() {
             }
         }
 
-        if (Object.keys(pokemonData) > 0) {
-            fetchData();
-            console.log("test App");
-        }
+        fetchData();
+        console.log("test test");
+
     }, []);
 
     return (
+
         <div>
-            {pokemonData && pokemonData.map}
+            {Object.keys(pokemonData).length > 0 &&
+                <>
             <h1>Pokemon</h1>
-            <button>Vorige</button>
-            <button>Volgende</button>
+                <button>Vorige</button>
+                <button>Volgende</button>
 
-            {const id = }
-            {pokemonData.map((pokemon) => {
-                return pokemon[] === id;
+            {pokemonData.results.map((data) => {
+                return <PokemonCard
+                id = {data.url.replace("https://pokeapi.co/api/v2/pokemon/","")}
+                />
             })}
-
-            {/* 1. map over array 20 pokemon objecten
-            2. neem index(id) van object als input van PokemonCard
-            3.
-            */}
-
-
-            <PokemonCard
-                id = {id}
-            />
-
+                </>
+            }
         </div>
     )
 }
