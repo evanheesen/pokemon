@@ -70,6 +70,7 @@ function App() {
                     {pokemonData.results.map((data) => {
                         return <PokemonCard
                             id={data.url.replace("https://pokeapi.co/api/v2/pokemon/", "")}
+                            key={data.name}
                         />
                     })}
                 </div>

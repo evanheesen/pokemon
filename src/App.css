@@ -47,7 +47,7 @@ button:disabled {
 
 .abilities {
     width: 150px;
-    padding: 5px 15px 5px 15px;
+    /*padding: 5px 15px 5px 15px;*/
     margin: 5px;
     background-color: #e9ecef;
     display: inline-block;
