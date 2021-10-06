@@ -40,11 +40,10 @@ function PokemonCard({id}) {
                 <img src={pokemonData.sprites.front_default} alt={pokemonData.name}/>
                 <p><b>Moves: </b>{pokemonData.moves.length}</p>
                 <p><b>Weight: </b>{pokemonData.weight}</p>
-                <p><b>Abilities:</b></p>
-                <ul>
+                <b>Abilities:</b>
+                <ul className="abilities">
                 {pokemonData.abilities.map((pokemonAbility) => {
-                    return <li className="abilities"
-                                 key={pokemonAbility.ability.name}>
+                    return <li key={pokemonAbility.ability.name}>
                         {pokemonAbility.ability.name}
                     </li>
                 })}

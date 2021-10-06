@@ -18,11 +18,11 @@ body {
 button {
     background-color: #023e8a;
     color: white;
-    width: 100px;
+    width: 150px;
     margin: 10px 10px 30px 10px;
     padding: 5px;
     border: 1px solid black;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 button:disabled {
@@ -47,8 +47,13 @@ button:disabled {
 
 .abilities {
     width: 150px;
-    /*padding: 5px 15px 5px 15px;*/
-    margin: 5px;
-    background-color: #e9ecef;
+    padding: 5px 15px 5px 15px;
     display: inline-block;
+    list-style-type: none;
+}
+
+li {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #e9ecef;
 }
