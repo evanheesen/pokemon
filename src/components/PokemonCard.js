@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import "../App.css"
 
-function PokemonCard({id}) {
+function PokemonCard({id, key}) {
 
     const [pokemonData, setPokemonData] = useState({});
 
@@ -10,15 +10,27 @@ function PokemonCard({id}) {
             async function fetchData() {
                 try {
                     const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-                    // console.log(result.data);
                     setPokemonData(result.data);
                 } catch (e) {
                     console.error(e);
                 }
             }
                 fetchData();
-                // console.log("test pokemonCard");
+            console.log("useEffect PokemonCard 1")
         }, []);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+                setPokemonData(result.data);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        fetchData();
+        console.log("useEffect PokemonCard 2")
+    }, [id]);
 
     return (
         <div className="pokemon-card">
@@ -29,7 +41,7 @@ function PokemonCard({id}) {
             <p><b>Moves: </b>{pokemonData.moves.length}</p>
             <p><b>Weight: </b>{pokemonData.weight}</p>
             <p><b>Abilities:</b></p>{pokemonData.abilities.map((pokemonAbility) => {
-            return <span className="abilities" key={id}>{pokemonAbility.ability.name}</span>
+            return <span className="abilities">{pokemonAbility.ability.name}</span>
         })}
                 </>
             }

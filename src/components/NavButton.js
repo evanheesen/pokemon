@@ -2,16 +2,16 @@ import React from "react";
 
 import "../App.css";
 
-function NavButton( {setNavigation, navigationName, disableButton} ) {
+function NavButton( {handleClick, buttonName, disableButton} ) {
 
     return (
         <>
             <button
                 disabled={disableButton}
                 type="button"
-                onClick={() => setNavigation}
+                onClick={handleClick}
             >
-                {navigationName}
+                {buttonName}
             </button>
         </>
     )

@@ -7,7 +7,7 @@ import NavButton from "./components/NavButton";
 function App() {
 
     const [pokemonData, setPokemonData] = useState({});
-    const [navigation, setNavigation] = useState("0");
+    const [navigation, setNavigation] = useState(0);
 
 
     function handlePreviousClick() {
@@ -19,6 +19,7 @@ function App() {
         console.log(navigation)
     }
 
+    // useEffect voor refresh pagina
     useEffect(() => {
         async function fetchData() {
             try {
@@ -30,9 +31,9 @@ function App() {
             }
         }
             fetchData();
-            console.log("test test");
     }, []);
 
+    // useEffect voor verandering navigation
     useEffect(() => {
         async function fetchData() {
             try {
@@ -52,18 +53,17 @@ function App() {
             {/* checken of er wel keys of waardes in object staan */}
             {Object.keys(pokemonData).length > 0 &&
             <>
-                <img src="https://1000merken.com/wp-content/uploads/2020/05/Pokemon-Logo.png" alt="Pokemon-log"
+                <img src="https://1000merken.com/wp-content/uploads/2020/05/Pokemon-Logo.png" alt="Pokemon-logo"
                      className="logo"/>
-                <button>Vorige</button>
                 <NavButton
-                    navigationName="Volgende"
-                    disableButton={pokemonData.next === null}
-                    setNavigation={handleNextClick()}
+                    buttonName="Vorige"
+                    disableButton={pokemonData.previous === null} // als pokemonData.previous null is, wordt de button disabled.
+                    handleClick={handlePreviousClick}
                 />
                 <NavButton
-                    navigationName="Vorige"
-                    disableButton={pokemonData.previous === null}
-                    setNavigation={handlePreviousClick()}
+                    buttonName="Volgende"
+                    disableButton={pokemonData.next === null} // als pokemonData.next null is, wordt de button disabled.
+                    handleClick={handleNextClick}
                 />
 
                 <div className="pokemon-container">
